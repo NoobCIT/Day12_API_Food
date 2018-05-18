@@ -1,0 +1,119 @@
+/*=== GLOBAL ===*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Muli', sans-serif;
+}
+
+html {
+  background-color: #2d3436;
+}
+
+.list {
+  max-width: 800px;
+  margin: 12px auto;
+  background-color: #dfe6e9;
+  padding: 12px;
+}
+
+/*=== CONTAINER ===*/
+
+.restaurant {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  margin: 12px;
+  padding: 12px;
+  background-color: #b2bec3;
+}
+
+/*=== LABELS ===*/
+
+.labels {
+  display: flex;
+  margin-left: 250px;
+}
+
+.label-address {
+  margin-left: 75px;
+}
+
+.label-votes {
+  margin-left: 75px;
+}
+
+.label-rating {
+  margin-left: 40px;
+}
+
+.label-cost {
+  margin-left: 30px;
+}
+
+/*=== THUMBNAIL === */
+
+.icon {
+  width: 180px;
+  height: 180px;
+}
+
+img {
+  height: 100%;
+  width: auto;
+}
+
+/*=== RESTAURANT NAME ===*/
+
+.restaurantName {
+  width: 180px;
+  padding: 6px;
+  text-align: center;
+}
+
+/*=== ADDRESS ===*/
+
+.address {
+  width: 180px;
+  padding: 6px;
+  text-align: center;
+}
+
+/*=== VOTES ===*/
+
+.votes {
+  width: 100px;
+  padding: 6px;
+  text-align: center;
+}
+
+/*=== RATING ===*/
+
+.rating {
+  width: 80px;
+  padding: 6px;
+  text-align: center;
+}
+
+/*=== COST ===*/
+
+.cost {
+  width: 80px;
+  padding: 6px;
+  text-align: center;
+}
+
+/*=== MEDIA QUERIES ===*/
+
+@media only screen and (max-width: 850px) {
+
+  .labels {
+    display: none;
+  }
+
+  .restaurant {
+    flex-direction: column;
+    height: 100%;
+  }
+}
