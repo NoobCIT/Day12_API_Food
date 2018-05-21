@@ -25,7 +25,7 @@ let urls = [...generateEndPoints(0, 100)]; // stores urls/endpoints
 var options = {
   method: 'GET',
   headers: {
-    'user-key': config.ENV_USER_KEY,
+    'user-key': process.env.MY_KEY || config.ENV_USER_KEY,
     'Content-Type': 'application/json'
   }
 };
