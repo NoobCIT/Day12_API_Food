@@ -25,7 +25,7 @@ let urls = [...generateEndPoints(0, 100)]; // stores urls/endpoints
 var options = {
   method: 'GET',
   headers: {
-    'user-key': process.env.MY_KEY || config.ENV_USER_KEY,
+    'user-key': 'c5aeffd06cade4c8235935d62f187e69',
     'Content-Type': 'application/json'
   }
 };
@@ -70,21 +70,18 @@ let list = document.querySelector('.list'); // aappend all entries here in DOM
 function displayRestaurants(restaurantsList) {
   for (let item of restaurantsList) {
 
-    let restaurant  = item.restaurant;
-    let thumbnail   = restaurant.thumb;
-    let name        = restaurant.name;
-    let address     = restaurant.location.address;
-    let votes       = restaurant.user_rating.votes;
-    let rating      = restaurant.user_rating.aggregate_rating;
-    let cost        = restaurant.average_cost_for_two;
+    let { restaurant } = item;
+    let { thumb, name, average_cost_for_two } = restaurant;
+    let { address } = restaurant.location;
+    let { votes, aggregate_rating } = restaurant.user_rating;
     let container   = createDiv('restaurant');
 
-    container.appendChild(createTypElem(thumbnail, 'icon', 'IMG'));
+    container.appendChild(createTypElem(thumb, 'icon', 'IMG'));
     container.appendChild(createTypElem(name, 'restaurantName', 'H3'));
     container.appendChild(createTypElem(address, 'address', 'H5'));
     container.appendChild(createTypElem(votes, 'votes', 'P'));
-    container.appendChild(createTypElem(rating, 'rating', 'P'));
-    container.appendChild(createTypElem(cost, 'cost', 'P'));
+    container.appendChild(createTypElem(aggregate_rating, 'rating', 'P'));
+    container.appendChild(createTypElem(average_cost_for_two, 'cost', 'P'));
     list.appendChild(container);
   }
 }
