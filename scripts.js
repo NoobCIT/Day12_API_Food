@@ -1,25 +1,31 @@
 //===================== REQUEST API DATA FROM ZOMATO =====================//
-
-let entity_id = '306';      // id for San Francisco
-let entity_type = 'city';   // query type is city
-let urls = [];              // stores urls/endpoints
-let searchDomain = 'https://developers.zomato.com/api/v2.1/search?';
-let queryId = `entity_id=${entity_id}`;
-let queryType = `entity_type=${entity_type}`;
-
 // Zomato only lets you grab 20 queries at a time,
 // Retrieves the ranges [0, 20], [20, 40], [40, 60], [60, 80], [80, 100]
-for (let i = 0; i < 100; i += 20) {
-  let request_url = searchDomain
-                    + queryId + '&' + queryType
-                    + '&' + `&start=${i}&count=${i + 20}`;
-  urls.push(request_url);
+
+function* generateEndPoints(minDataRange, maxDataRange) {
+
+  let entity_id = '306';      // id for San Francisco
+  let entity_type = 'city';   // query type is city
+  let searchDomain = 'https://developers.zomato.com/api/v2.1/search?';
+  let queryId = `entity_id=${entity_id}`;
+  let queryType = `entity_type=${entity_type}`;
+
+  let start = minDataRange;
+  while (start <= maxDataRange) {
+    let request_url = searchDomain
+                      + queryId + '&' + queryType
+                      + '&' + `&start=${start}&count=${start + 20}`;
+    start += 20;
+    yield request_url;
+  }
 }
+
+let urls = [...generateEndPoints(0, 100)]; // stores urls/endpoints
 
 var options = {
   method: 'GET',
   headers: {
-    'user-key': 'c5aeffd06cade4c8235935d62f187e69',
+    'user-key': config.ENV_USER_KEY,
     'Content-Type': 'application/json'
   }
 };
